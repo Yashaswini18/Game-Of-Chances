@@ -1,0 +1,125 @@
+import random
+
+total = 100
+print("Startining with "+str(total)+" amount")
+print("--------------")
+#Write your game of chance functions here
+def coin_flip(guess,bet):
+  #if bet is 0 or less than 0
+  if bet <= 0:
+    print("Bet more than 0.")
+    return 0
+
+  print("Let's play coin filp!. Your guess is "+guess)
+  coin = random.randint(1,2)
+
+  if coin == 1:
+      print("Heads!")
+  elif coin == 2:  
+      print("Tails!")
+
+  if (guess == "Heads" and coin == 1) or (guess == "Tails" and coin == 2):
+    print("You won "+str(bet)+" Rs")
+    print("---------------")
+    return bet
+
+  else:
+    print("You lost "+str(bet)+" Rs")
+    print("---------------")
+    return -bet
+
+def Cho_Han(guess,bet):
+  if bet <= 0:
+    print("Bet more than 0.")
+    return 0
+  print("Let's play Cho-Han.")
+  num1 = random.randint(1,6)
+  num2 = random.randint(1,6)
+  num = num1+num2
+  print("The sum of two dice is "+str(num))
+
+  if guess == "Even" and num%2==0:
+    print("You won "+str(bet)+" Rs")
+    print("---------------")
+    return bet
+
+  elif guess == "Odd" and num%2==1:
+    print("You won "+str(bet)+" Rs")
+    print("---------------")
+    return bet
+
+  else:
+    print("You lost "+str(bet)+" Rs")
+    print("---------------")
+    return -bet
+
+
+def higher_card(bet):
+  if bet <= 0:
+    print("Bet more than 0.")
+    return 0
+  
+  print("Let's paly the Higher game!")
+  mine = random.randint(1,10)
+  print("Your card is "+str(mine))
+  system = random.randint(1,10)
+  print("Sytem card is "+str(system))
+
+  if mine>system:
+    print("You won "+str(bet)+" Rs")
+    print("---------------")
+    return bet
+
+  elif system>mine:
+    print("you lost "+str(bet)+" Rs")
+    print("---------------")
+    return -bet
+
+  else:
+    print("It's a tie!")
+    print("---------------")
+    return 0
+
+def roulette(guess,bet):
+  if bet <= 0:
+    print("Bet more than 0.")
+    return 0
+
+  print("Let's play roulette!")
+  result = random.randint(1,37)
+  if result == 37:
+    print("The wheel landed on 00.")
+  else:
+    print("The wheel landed on "+str(result))
+    
+  if guess=="Even" and result%2==0 and result!=0:
+    print(str(result) + " is an even number.")
+    print("You won " + str(bet)+" Rs.")
+    print("---------------")
+    return bet
+
+  elif guess=="Odd" and reult%2==1 and result!=37:
+    print(str(result) + " is an odd number.")
+    print("You won " + str(bet)+" dollars!")
+    print("---------------")
+    return bet
+
+  elif guess==result:
+    print("You guessed " + str(guess) + " and the result was " + str(result))
+    print("You won " + str(bet * 35)+" Rs.")
+    print("---------------")
+    return bet*35
+
+  else:
+    print("You lost " + str(bet)+" Rs.")
+    print("---------------")
+    return -bet
+
+
+
+#Call your game of chance functions here
+total += coin_flip("Tails",5) 
+total += Cho_Han("Even",10)
+total += higher_card(10)
+total += roulette("Even",15)
+print("Your total amount of money is " + str(total))
