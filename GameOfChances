@@ -3,6 +3,7 @@ import random
 total = 100
 print("Startining with "+str(total)+" amount")
 print("--------------")
+
 #Write your game of chance functions here
 def coin_flip(guess,bet):
   #if bet is 0 or less than 0
@@ -13,6 +14,7 @@ def coin_flip(guess,bet):
   print("Let's play coin filp!. Your guess is "+guess)
   coin = random.randint(1,2)
 
+  #Print result. 1 is Heads. 2 is Tails
   if coin == 1:
       print("Heads!")
   elif coin == 2:  
@@ -59,12 +61,14 @@ def higher_card(bet):
     print("Bet more than 0.")
     return 0
   
+  #Draw two cards between 1 and 2
   print("Let's paly the Higher game!")
   mine = random.randint(1,10)
   print("Your card is "+str(mine))
   system = random.randint(1,10)
   print("Sytem card is "+str(system))
 
+  #Determines who won and returns either bet, -bet or 0 (in the case of a tie.)
   if mine>system:
     print("You won "+str(bet)+" Rs")
     print("---------------")
@@ -84,26 +88,30 @@ def roulette(guess,bet):
   if bet <= 0:
     print("Bet more than 0.")
     return 0
-
+    
+  #A standard roulette wheel has the numbers 0 through 36 as well as 00. We'll use 37 to represent 00.
   print("Let's play roulette!")
   result = random.randint(1,37)
   if result == 37:
     print("The wheel landed on 00.")
   else:
     print("The wheel landed on "+str(result))
-    
+   
+  #Checks to see if we guessed Even and the result was even. If the result was 0, the player shouldn't win
   if guess=="Even" and result%2==0 and result!=0:
     print(str(result) + " is an even number.")
     print("You won " + str(bet)+" Rs.")
     print("---------------")
     return bet
-
+  
+  #Checks to see if we guessed Odd and the result was odd. If the result was 37, the player shouldn't win, since that's what we are using to represent 00.
   elif guess=="Odd" and reult%2==1 and result!=37:
     print(str(result) + " is an odd number.")
     print("You won " + str(bet)+" dollars!")
     print("---------------")
     return bet
-
+  
+  # If you guessed a number and the result was that number, you should win 35 times the amount they bet
   elif guess==result:
     print("You guessed " + str(guess) + " and the result was " + str(result))
     print("You won " + str(bet * 35)+" Rs.")
